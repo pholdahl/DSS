@@ -177,7 +177,7 @@ registrationForm.addEventListener("submit", async (event) => {
 
     setTimeout(() => {
       closeModal();
-    }, 3300);
+    }, 12000);
 
   } catch (error) {
     console.error("Registrering feilet:", error);
