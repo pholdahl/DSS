@@ -139,6 +139,7 @@ function getRandomSuccessMessage() {
   return successMessages[randomIndex];
 }
 
+
 registrationForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -147,19 +148,15 @@ registrationForm.addEventListener("submit", async (event) => {
 
   const name = document.querySelector("#candidate-name").value.trim();
   const codename = document.querySelector("#codename").value.trim();
-  
-  if (!name || !codename) {
-    return;
-  }
 
-  if (name.length < 2 || codename.length < 2) {
-    return;
-  }
+  // Choose the message once
+  const selectedMessage = getRandomSuccessMessage();
 
   const formData = new URLSearchParams();
 
   formData.append("name", name);
   formData.append("codename", codename);
+  formData.append("message", selectedMessage);
 
   try {
     await fetch(GOOGLE_SCRIPT_URL, {
@@ -168,8 +165,9 @@ registrationForm.addEventListener("submit", async (event) => {
       mode: "no-cors"
     });
 
+    // Use the same values in the success modal
     registeredCodename.textContent = codename;
-    successMessage.textContent = getRandomSuccessMessage();
+    successMessage.textContent = selectedMessage;
 
     modalContent.classList.add("is-hidden");
 
@@ -179,7 +177,7 @@ registrationForm.addEventListener("submit", async (event) => {
 
     setTimeout(() => {
       closeModal();
-    }, 9000);
+    }, 3300);
 
   } catch (error) {
     console.error("Registrering feilet:", error);
@@ -188,6 +186,56 @@ registrationForm.addEventListener("submit", async (event) => {
     submitButton.textContent = "REGISTRER KANDIDAT →";
   }
 });
+
+// registrationForm.addEventListener("submit", async (event) => {
+//   event.preventDefault();
+
+//   submitButton.disabled = true;
+//   submitButton.textContent = "REGISTRERER...";
+
+//   const name = document.querySelector("#candidate-name").value.trim();
+//   const codename = document.querySelector("#codename").value.trim();
+  
+//   if (!name || !codename) {
+//     return;
+//   }
+
+//   if (name.length < 2 || codename.length < 2) {
+//     return;
+//   }
+
+//   const formData = new URLSearchParams();
+
+//   formData.append("name", name);
+//   formData.append("codename", codename);
+
+//   try {
+//     await fetch(GOOGLE_SCRIPT_URL, {
+//       method: "POST",
+//       body: formData,
+//       mode: "no-cors"
+//     });
+
+//     registeredCodename.textContent = codename;
+//     successMessage.textContent = getRandomSuccessMessage();
+
+//     modalContent.classList.add("is-hidden");
+
+//     setTimeout(() => {
+//       registrationSuccess.classList.add("is-visible");
+//     }, 300);
+
+//     setTimeout(() => {
+//       closeModal();
+//     }, 9000);
+
+//   } catch (error) {
+//     console.error("Registrering feilet:", error);
+
+//     submitButton.disabled = false;
+//     submitButton.textContent = "REGISTRER KANDIDAT →";
+//   }
+// });
 
 
 /* =========================
