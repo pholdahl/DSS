@@ -187,56 +187,6 @@ registrationForm.addEventListener("submit", async (event) => {
   }
 });
 
-// registrationForm.addEventListener("submit", async (event) => {
-//   event.preventDefault();
-
-//   submitButton.disabled = true;
-//   submitButton.textContent = "REGISTRERER...";
-
-//   const name = document.querySelector("#candidate-name").value.trim();
-//   const codename = document.querySelector("#codename").value.trim();
-  
-//   if (!name || !codename) {
-//     return;
-//   }
-
-//   if (name.length < 2 || codename.length < 2) {
-//     return;
-//   }
-
-//   const formData = new URLSearchParams();
-
-//   formData.append("name", name);
-//   formData.append("codename", codename);
-
-//   try {
-//     await fetch(GOOGLE_SCRIPT_URL, {
-//       method: "POST",
-//       body: formData,
-//       mode: "no-cors"
-//     });
-
-//     registeredCodename.textContent = codename;
-//     successMessage.textContent = getRandomSuccessMessage();
-
-//     modalContent.classList.add("is-hidden");
-
-//     setTimeout(() => {
-//       registrationSuccess.classList.add("is-visible");
-//     }, 300);
-
-//     setTimeout(() => {
-//       closeModal();
-//     }, 9000);
-
-//   } catch (error) {
-//     console.error("Registrering feilet:", error);
-
-//     submitButton.disabled = false;
-//     submitButton.textContent = "REGISTRER KANDIDAT →";
-//   }
-// });
-
 
 /* =========================
    DSS Console Easter Egg

@@ -800,6 +800,33 @@ nav a:hover {
   background-color: var(--color-accent-dark);
 }
 
+.confirmation-actions {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.confirmation .information-button {
+  display: block;
+  padding: 12px 18px;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.confirmation .information-button:hover {
+  background-color: var(--color-white);
+}
+
+.confirmation .information-button:focus-visible,
+.site-nav a:focus-visible {
+  outline: 3px solid var(--color-accent-light);
+  outline-offset: 3px;
+}
+
 
 /* =========================
    Registration Modal
@@ -1334,6 +1361,11 @@ body.modal-open {
   .site-nav a:hover {
     background-color: #444;
     text-decoration: none;
+  }
+
+  .site-nav .information-nav-link {
+    border-left: 3px solid var(--color-accent-light);
+    background-color: rgba(143, 48, 48, 0.22);
   }
 
 
